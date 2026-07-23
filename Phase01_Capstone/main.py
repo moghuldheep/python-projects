@@ -1,14 +1,13 @@
 import logging
 from datetime import datetime
-import employee
-import os
+from employee import Employee
 from file_utils import read_file
 
 logging.basicConfig(filename='logs/employee.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s' )
 
 logging.info("Program started")
 
-def process_summary(total_records, processed_records, failed_records):
+def process_summary(total_records, processed_records, failed_records, total_processing_time):
         print(f"===============================")
         print(f"Employee ETL System Summary")
         print(f"===============================")
@@ -28,12 +27,12 @@ lines = read_file()
 
 print(f"Employee ETL System initialized successfully")
 
-for line in lines:
+for record_number, line in enumerate(lines, start=2):
     total_records += 1
     employee_id, name, job, salary = (line.strip().split(","))
 
     try:
-        emp = employee.Employee(employee_id, name, job, salary)
+        emp = Employee(employee_id, name, job, salary)
     except ValueError as e:
         logging.error(f"employee_id: {employee_id} | name: {name} | job: {job} | salary: {salary} | Error: {e}")
         failed_records += 1
@@ -46,10 +45,12 @@ for line in lines:
 for emp in employees:
     emp.display()
     
-process_summary(total_records, processed_records, failed_records)
+
 
 process_end_time = datetime.now()
 total_processing_time = (process_end_time - process_start_time).total_seconds()
+
+process_summary(total_records, processed_records, failed_records, total_processing_time)
 logging.info("Program completed")
 
 

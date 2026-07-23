@@ -9,9 +9,10 @@ class Employee:
     def display(self):
         print(f"Employee details")
         print(f"----------------")
-        print(self.name)
-        print(self.job)
-        print(self.salary)
+        print(f"Employee Id: {self.employee_id}")
+        print(f"Name: {self.name}")
+        print(f"Job: {self.job}")
+        print(f"Salary: {self.salary}")
         print(f"----------------")
 
     def calculate_bonus(self):
@@ -26,5 +27,5 @@ class Employee:
     def give_raise(self, amount):
         old_salary = self.salary
         print(f"{old_salary}")
-        self.salary_after_raise = self.salary + amount
-        print(f"{self.salary_after_raise}")
+        self.salary = self.salary + amount
+        print(f"{self.salary}")
