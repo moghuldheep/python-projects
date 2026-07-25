@@ -1,0 +1,10 @@
+===============================
+Employee ETL System Summary
+===============================
+Total records: 5
+Processed records: 4
+Failed records: 1
+Total bonus: 21950
+High salary employees: 3
+Total processing time: 0.00 seconds
+===============================
